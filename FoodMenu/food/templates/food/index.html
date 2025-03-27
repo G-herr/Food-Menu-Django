@@ -1,19 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends 'food/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'food/style.css' %}">
+{% endblock %}
+
 <body>
-    <h1>This is just a template</h1>
+    {% block body %}
     {% for item in item_list %}
-        <ul>
-            <li>
-                {{ item.id }} -- <a href="{% url 'detail' item.id %}">{{ item.item_name }}</a>
-            </li>
-        </ul>
+        <div class="row align-items-center mb-4">
+            <div class="col-md-3 offset-md-2">
+                <div class="image-wrapper">
+                    <img src="{{ item.item_image }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>{{ item.item_name }}</h3>
+                <h5>{{ item.item_desc }}</h5>
+                <h6>${{ item.item_price }}</h6>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'detail' item.id %}" class="btn btn-success">Details</a>
+            </div>
+        </div>
     {% endfor %}
+    {% endblock %}
 </body>
 </html>
 
