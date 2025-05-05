@@ -1,5 +1,4 @@
 {% csrf_token %}
 
 <h1>{{ user.username }}</h1>
-<p>Image URL: {{ user.profile.image.url }}</p>
 <img src="{{ user.profile.image.url }}" class="card" style="width: 300px">
